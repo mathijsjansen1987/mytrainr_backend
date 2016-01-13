@@ -26,7 +26,11 @@
 Route::group(['middleware' => ['web']], function () {
 
 	Route::group(['prefix' => 'api/v1', 'middleware' => 'auth.basic'],function(){
-		Route::resource('videos','VideosController');
+
+		Route::get('users/{id}/videos','VideoController@index');
+		Route::resource('videos','VideoController');
+		Route::resource('users','UserController',['only' => ['index','show']]);
+
 	});
 
 });
