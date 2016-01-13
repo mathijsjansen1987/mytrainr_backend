@@ -25,7 +25,7 @@ class VideoController extends ApiController
 
 	public function index($id = null){
 
-		$videos = $id ? User::find($id)->videos : Video::all();
+		$videos = $id ? @User::find($id)->videos : Video::all();
 
 		if(!$videos)
 			return $this->respondNotFound('User has no videos');
