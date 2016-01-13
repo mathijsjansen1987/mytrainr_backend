@@ -6,6 +6,18 @@ class ApiController extends Controller
 {
 	protected $statusCode;
 
+
+	public function index(){
+
+		return $this->setStatusCode(200)->respond([
+			"mytrainr_API v1" => [
+				"message" => 'Welcome to the mytrainr API for more information and usage try the documentation url that is provided.'
+			],
+			"documentation_url" =>  'http://mytrainr.nl/docs'
+		]);
+	}
+
+
 	public function getStatusCode(){
 		return $this->statusCode;
 	}
