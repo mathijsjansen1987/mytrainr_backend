@@ -6,7 +6,6 @@ use App\Video;
 
 class VideosTableSeeder extends Seeder{
 
-
 	public function run(){
 
 		$faker = Faker::create();
@@ -20,11 +19,7 @@ class VideosTableSeeder extends Seeder{
 
 		}
 
-
 	}
-
-
-
 }
 
 

@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'api/v1', 'middleware' => 'auth.basic.once'],function(){
+
+		Route::resource('videos','VideosController');
+
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -27,5 +33,8 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+
+
+
 });

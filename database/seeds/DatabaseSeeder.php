@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Video;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,7 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
 		Video::truncate();
         $this->call(VideosTableSeeder::class);
+		User::truncate();
+		$this->call(UsersTableSeeder::class);
     }
 }
