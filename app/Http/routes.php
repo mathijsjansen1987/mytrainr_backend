@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web']], function () {
 		Route::get('/','ApiController@index');
 		Route::get('users/{id}/videos','VideoController@index');
 		Route::resource('videos','VideoController');
-		Route::resource('users','UserController',['only' => ['index','show']]);
+		Route::resource('users','UserController',['only' => ['index','show','store']]);
 
 	});
 

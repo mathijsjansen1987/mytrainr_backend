@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Video;
 use App\User;
 use Response;
+use Input;
 use App\Mytrainr\Transformers\VideoTransformer;
 
 class VideoController extends ApiController
@@ -25,7 +26,7 @@ class VideoController extends ApiController
 
 	public function index($id = null){
 
-		$videos = $id ? @User::find($id)->videos : Video::all();
+		$videos = $this->getVideos($id);
 
 		if(!$videos)
 			return $this->respondNotFound('User has no videos');
@@ -47,6 +48,11 @@ class VideoController extends ApiController
 		return $this->setStatusCode(200)->respond([
 			"data" => $this->videoTransformer->transform($video)
 		]);
+	}
+
+	public function getVideos($id){
+		$videos = $id ? User::findOrFail($id)->videos : Video::all();
+		return $videos;
 	}
 
 }

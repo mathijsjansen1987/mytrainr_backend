@@ -9,6 +9,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Response;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +47,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+		/*if($e = "Illuminate\Database\Eloquent\ModelNotFoundException"){
+			return Response::json(["error" => ["message" => "Resource not found"]],404);
+		}*/
+
         return parent::render($request, $e);
     }
 }
