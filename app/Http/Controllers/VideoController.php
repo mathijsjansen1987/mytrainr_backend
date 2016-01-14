@@ -33,7 +33,7 @@ class VideoController extends ApiController
 
 
 		return $this->setStatusCode(200)->respond([
-			"data" => $this->videoTransformer->transformCollection($videos->all()),
+			"videos" => $this->videoTransformer->transformCollection($videos->all()),
 			"pagination_info" => 'test'
 		]);
 	}
@@ -46,7 +46,7 @@ class VideoController extends ApiController
 			return $this->respondNotFound('Video does not exist');
 
 		return $this->setStatusCode(200)->respond([
-			"data" => $this->videoTransformer->transform($video)
+			"video" => $this->videoTransformer->transform($video)
 		]);
 	}
 

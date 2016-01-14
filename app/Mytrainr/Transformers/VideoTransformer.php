@@ -6,7 +6,8 @@ class VideoTransformer extends Transformer{
 	public function transform($video)
 	{
 		return [
-			'name' => $video['title'],
+			'id' => $video['id'],
+			'title' => $video['title'],
 			'url' => $video['url']
 		];
 	}
