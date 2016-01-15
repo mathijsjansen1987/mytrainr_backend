@@ -34,7 +34,7 @@ class VideoController extends ApiController
 
 		return $this->setStatusCode(200)->respond([
 			"videos" => $this->videoTransformer->transformCollection($videos->all()),
-			"pagination_info" => 'test'
+			//"pagination_info" => 'test'
 		]);
 	}
 

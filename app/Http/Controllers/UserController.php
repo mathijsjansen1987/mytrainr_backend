@@ -31,7 +31,7 @@ class UserController extends ApiController
 
 		return $this->setStatusCode(200)->respond([
 			"users" => $this->userTransformer->transformCollection($users->all()),
-			"pagination_info" => 'test'
+			//"pagination_info" => 'test'
 		]);
 	}
 
@@ -51,8 +51,6 @@ class UserController extends ApiController
 
 
 	public function store(){
-
-
 
 		$input = Input::all();
 		$input = $input['user'];

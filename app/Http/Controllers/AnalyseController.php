@@ -33,8 +33,8 @@ class AnalyseController extends ApiController
 
 
 		return $this->setStatusCode(200)->respond([
-			"analyses" => $this->analyseTransformer->transformCollection($analysis->all()),
-			"pagination_info" => 'test'
+			"analyse" => $this->analyseTransformer->transformCollection($analysis->all()),
+			//"pagination_info" => 'test'
 		]);
 	}
 
