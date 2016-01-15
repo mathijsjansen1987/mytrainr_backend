@@ -8,6 +8,8 @@ class VideoTransformer extends Transformer{
 		return [
 			'id' => $video['id'],
 			'title' => $video['title'],
+			'description' => $video['description'],
+			'imageUrl' => $video['image_url'],
 			'url' => $video['url']
 		];
 	}
