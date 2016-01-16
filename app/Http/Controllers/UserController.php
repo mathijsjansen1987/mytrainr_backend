@@ -75,10 +75,9 @@ class UserController extends ApiController
 		$user->save();
 
 		return $this->setStatusCode(200)->respond([
+			"user" => $user,
 			"message" => "succesfully created the user account, feel free to login trough http://mytrainr.nl"
-		])->header('Access-Control-Allow-Origin', '*');
-
-
+		]);
 
 	}
 

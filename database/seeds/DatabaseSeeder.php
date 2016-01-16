@@ -5,6 +5,8 @@ use App\Video;
 use App\User;
 use App\Analyse;
 use App\Group;
+use App\Sport;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -23,6 +25,8 @@ class DatabaseSeeder extends Seeder
 		$this->call(AnalyseTableSeeder::class);
 		Group::truncate();
 		$this->call(GroupsTableSeeder::class);
+		Sport::truncate();
+		$this->call(SportsTableSeeder::class);
 
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

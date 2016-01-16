@@ -31,7 +31,6 @@ class GroupController extends ApiController
 		if(!$groups)
 			return $this->respondNotFound('No groups found');
 
-
 		return $this->setStatusCode(200)->respond([
 			"group" => $this->groupTransformer->transformCollection($groups->all()),
 			//"pagination_info" => 'test'

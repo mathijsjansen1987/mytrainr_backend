@@ -8,7 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Video;
 use App\User;
 use Response;
-use Input;
+use Validator;
+use Illuminate\Support\Facades\Input;
 use App\Mytrainr\Transformers\VideoTransformer;
 
 class VideoController extends ApiController
@@ -53,6 +54,31 @@ class VideoController extends ApiController
 	public function getVideos($id){
 		$videos = $id ? User::findOrFail($id)->videos : Video::all();
 		return $videos;
+	}
+
+	public function store(){
+
+		$input = Input::all();
+		$input = $input['video'];
+
+		$validator = Validator::make($input, [
+			'title' => 'required',
+			'description' => 'required',
+		]);
+
+		if ($validator->fails())
+			return $this->respondNotFound($validator->errors());
+
+		$video = new Video();
+		$video->title = $input['title'];
+		$video->description = $input['description'];
+		$video->save();
+
+		return $this->setStatusCode(200)->respond([
+			"video" => $video,
+			"message" => "succesfully created the video"
+		]);
+
 	}
 
 }

@@ -35,6 +35,7 @@ Route::group(['middleware' => ['web']], function () {
 		Route::resource('videos','VideoController');
 		Route::resource('analyses','AnalyseController');
 		Route::resource('groups','GroupController');
+		Route::resource('sports','SportController');
 		Route::resource('users','UserController',['only' => ['index','show','store']]);
 
 	});
