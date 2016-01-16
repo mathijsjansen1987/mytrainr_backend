@@ -30,6 +30,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::group(['prefix' => 'api/v1'],function(){
 		header("Access-Control-Allow-Origin: *");
 		header("Access-Control-Allow-Headers: Content-Type");
+		header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, UPDATE");
 		Route::get('/','ApiController@index');
 		Route::get('users/{id}/videos','VideoController@index');
 		Route::resource('videos','VideoController');
