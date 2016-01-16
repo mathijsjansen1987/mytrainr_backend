@@ -75,7 +75,7 @@ class VideoController extends ApiController
 		$video->save();
 
 		return $this->setStatusCode(200)->respond([
-			"video" => $video,
+			"video" =>  $this->videoTransformer->transform($video),
 			"message" => "succesfully created the video"
 		]);
 

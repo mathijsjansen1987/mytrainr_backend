@@ -75,7 +75,7 @@ class UserController extends ApiController
 		$user->save();
 
 		return $this->setStatusCode(200)->respond([
-			"user" => $user,
+			"user" => $this->userTransformer->transform($user),
 			"message" => "succesfully created the user account, feel free to login trough http://mytrainr.nl"
 		]);
 
