@@ -81,4 +81,14 @@ class VideoController extends ApiController
 
 	}
 
+	public function destroy($id){
+
+		$video = Video::find($id);
+		$video->delete();
+
+		return $this->setStatusCode(200)->respond([
+			"message" => "succesfully deleted the video"
+		]);
+	}
+
 }
