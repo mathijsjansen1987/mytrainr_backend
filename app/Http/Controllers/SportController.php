@@ -8,7 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Sport;
 use App\User;
 use Response;
-use Input;
+use Validator;
+use Illuminate\Support\Facades\Input;
 use App\Mytrainr\Transformers\SportTransformer;
 
 class SportController extends ApiController
@@ -52,6 +53,39 @@ class SportController extends ApiController
 	public function getSports($id){
 		$sports = $id ? User::findOrFail($id)->sports : Sport::all();
 		return $sports;
+	}
+
+	public function store(){
+
+		$input = Input::all();
+		$input = $input['sport'];
+
+		$validator = Validator::make($input, [
+			'name' => 'required'
+		]);
+
+		if ($validator->fails())
+			return $this->respondNotFound($validator->errors());
+
+		$sport = new Sport();
+		$sport->name = $input['name'];
+		$sport->save();
+
+		return $this->setStatusCode(200)->respond([
+			"sport" =>  $this->sportTransformer->transform($sport),
+			"message" => "succesfully created the sport"
+		]);
+
+	}
+
+	public function destroy($id){
+
+		$sport = Sport::find($id);
+		$sport->delete();
+
+		return $this->setStatusCode(200)->respond([
+			"message" => "succesfully deleted the sport"
+		]);
 	}
 
 }

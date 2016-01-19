@@ -64,6 +64,7 @@ class VideoController extends ApiController
 		$validator = Validator::make($input, [
 			'title' => 'required',
 			'description' => 'required',
+			'url' => 'required',
 		]);
 
 		if ($validator->fails())
@@ -72,6 +73,7 @@ class VideoController extends ApiController
 		$video = new Video();
 		$video->title = $input['title'];
 		$video->description = $input['description'];
+		$video->url = $input['url'];
 		$video->save();
 
 		return $this->setStatusCode(200)->respond([
