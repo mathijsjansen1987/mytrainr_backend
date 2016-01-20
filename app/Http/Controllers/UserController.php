@@ -9,7 +9,7 @@ use App\User;
 use Response;
 use Validator;
 use Illuminate\Support\Facades\Input;
-use App\Mytrainr\Transformers\userTransformer;
+use App\Mytrainr\Transformers\UserTransformer;
 use Hash;
 
 class UserController extends ApiController
