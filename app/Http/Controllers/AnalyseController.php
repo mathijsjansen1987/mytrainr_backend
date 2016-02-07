@@ -54,5 +54,15 @@ class AnalyseController extends ApiController
 		$analyses = $id ? User::findOrFail($id)->analyses : Analyse::all();
 		return $analyses;
 	}
+	
+	public function destroy($id){
+
+		$analyse = Analyse::find($id);
+		$analyse->delete();
+
+		return $this->setStatusCode(200)->respond([
+			"message" => "succesfully deleted the analyse"
+		]);
+	}
 
 }

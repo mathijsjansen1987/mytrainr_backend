@@ -10,7 +10,9 @@ class VideoTransformer extends Transformer{
 			'title' => $video['title'],
 			'description' => $video['description'],
 			'imageUrl' => $video['image_url'],
-			'url' => $video['url']
+			'url' => $video['url'],
+			'online' => $video['online'],
+			'offline' => $video['offline']
 		];
 	}
 

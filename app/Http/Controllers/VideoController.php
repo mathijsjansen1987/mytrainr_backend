@@ -55,6 +55,17 @@ class VideoController extends ApiController
 		$videos = $id ? User::findOrFail($id)->videos : Video::all();
 		return $videos;
 	}
+	
+	public function getOnlineVideos($id){
+		$videos = $id ? User::findOrFail($id)->videos : Video::where('online',1)->get();
+		return $videos;
+	}
+	
+	public function getOfflineVideos($id){
+		$videos = $id ? User::findOrFail($id)->videos : Video::where('offline',1)->get();
+		return $videos;
+	}
+
 
 	public function store(){
 
@@ -74,6 +85,7 @@ class VideoController extends ApiController
 		$video->title = $input['title'];
 		$video->description = $input['description'];
 		$video->url = $input['url'];
+		$video->image_url = "http://lorempixel.com/600/600/?".time();
 		$video->save();
 
 		return $this->setStatusCode(200)->respond([

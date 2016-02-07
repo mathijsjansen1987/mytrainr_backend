@@ -27,7 +27,7 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-	Route::group(['prefix' => 'api/v1'],function(){
+	Route::group(['prefix' => 'api/v1'],function(){		
 		Route::get('/','ApiController@index');
 		Route::get('users/{id}/videos','VideoController@index');
 		Route::resource('videos','VideoController');

@@ -35,6 +35,8 @@ class ApiController extends Controller
 
 	public function respond($data, $headers = [])
 	{
+		
+		header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
 		return Response::json($data, $this->getStatusCode(), $headers);
 	}
 
