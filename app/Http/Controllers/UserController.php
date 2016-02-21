@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Video;
 use Response;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use App\Mytrainr\Transformers\UserTransformer;
+use App\Mytrainr\Transformers\videoTransformer;
 use Hash;
 
 class UserController extends ApiController
@@ -19,10 +21,12 @@ class UserController extends ApiController
 	* @var Mytrainr\Transformers\VideoTransformer
 	*/
 	protected $userTransformer;
+	protected $videoTransformer;
 
-	function __construct(UserTransformer $userTransformer){
+	function __construct(UserTransformer $userTransformer, VideoTransformer $videoTransformer){
 
 		$this->userTransformer = $userTransformer;
+		$this->videoTransformer = $videoTransformer;
 	}
 
 	public function index(){
@@ -38,6 +42,8 @@ class UserController extends ApiController
 	public function show($id){
 
 		$user = User::find($id);
+		$videos = $user->videos()->get();
+
 
 		if(!$user)
 		{
@@ -45,7 +51,8 @@ class UserController extends ApiController
 		}
 
 		return $this->setStatusCode(200)->respond([
-			"user" => $this->userTransformer->transform($user)
+			"user" => $this->userTransformer->transform($user),
+			"video" => $videos
 		]);
 	}
 

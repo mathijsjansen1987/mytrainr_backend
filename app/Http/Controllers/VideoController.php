@@ -76,6 +76,7 @@ class VideoController extends ApiController
 			'title' => 'required',
 			'description' => 'required',
 			'url' => 'required',
+			//'imageUrl' => 'required'
 		]);
 
 		if ($validator->fails())
@@ -85,7 +86,7 @@ class VideoController extends ApiController
 		$video->title = $input['title'];
 		$video->description = $input['description'];
 		$video->url = $input['url'];
-		$video->image_url = "http://lorempixel.com/600/600/?".time();
+		// $video->image_url = $input['imageUrl'];
 		$video->save();
 
 		return $this->setStatusCode(200)->respond([
